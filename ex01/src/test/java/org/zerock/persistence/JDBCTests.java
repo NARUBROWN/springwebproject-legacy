@@ -10,7 +10,7 @@ import lombok.extern.log4j.Log4j;
 public class JDBCTests {
 	static {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -19,11 +19,11 @@ public class JDBCTests {
 	@Test
 	public void testConnection() {
 		try(Connection con = DriverManager.getConnection(
-				"jdbc:oracle:thin:@localhost:3306:XE",
-				"test",
+				"jdbc:mysql://localhost:3306/book_ex",
+				"root",
 				"test1234"
 				)) {
-		
+		log.info(con);
 		} catch (Exception e) {
 			fail(e.getMessage());
 		}
